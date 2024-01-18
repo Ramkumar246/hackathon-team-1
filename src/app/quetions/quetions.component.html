@@ -1,0 +1,67 @@
+<nav class="navbar navbar-light bg-light" style="background-color: #cdcdcd !important;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="../../assets/images/panda-svgrepo-com (1).svg" alt="" width="30" height="24"
+                class="d-inline-block align-text-top">
+            HACKATHON
+        </a>
+    </div>
+</nav>
+
+
+<h1 class="text-center  mt-4 mb-4">QUESTIONS</h1>
+
+<!-- survey.component.html -->
+
+<div class="container" style="height: 346px;" *ngIf="currentSectionIndex < survey?.sections?.length">
+    <div>
+      <h2>{{ survey?.sections[currentSectionIndex]?.[0]?.question }}</h2>
+    </div>
+  
+    <div class="pt-3 pb-2" style="display: flex; justify-content: space-between;">
+      <div *ngFor="let category of survey?.sections[currentSectionIndex]?.[0]?.Importance">
+        <h3>{{ 'How Importance is it that achieve this?' }}</h3>
+  
+        <div class="pt-1 pb-1" *ngFor="let option of category">
+          <input
+            type="radio"
+            [name]="currentSectionIndex + '_Importance'"
+            [(ngModel)]="userResponses[currentSectionIndex + '_Importance']"
+            [value]="option.value"
+            (change)="selectValue(currentSectionIndex, 'Importance', option.value)"
+          />
+          {{ option.value }}
+        </div>
+      </div>
+  
+      <div *ngFor="let category of survey?.sections[currentSectionIndex]?.[0]?.Performance">
+        <h3>{{ 'How do i rate Performance against this?' }}</h3>
+  
+        <div class="pt-1 pb-1" *ngFor="let option of category">
+          <input
+            type="radio"
+            [name]="currentSectionIndex + '_Performance'"
+            [(ngModel)]="userResponses[currentSectionIndex + '_Performance']"
+            [value]="option.value"
+            (change)="selectValue(currentSectionIndex, 'Performance', option.value)"
+          />
+          {{ option.value }}
+        </div>
+      </div>
+    </div>
+  
+    <div class="pt-3 pb-2">
+      <button mat-raised-button color="primary" (click)="nextSection()">Next</button>
+    </div>
+  </div>
+  
+  <div class="container" style="height: 400px;" *ngIf="currentSectionIndex === survey?.sections?.length">
+    <h2 class="text-center">Survey Completed!</h2>
+    <h1 class="text-center">Thank you</h1>
+    <pre>{{ userResponses | json }}</pre>
+  </div>
+  
+  
+  <footer style="background-color: gray; height: 100px;"></footer>
+ 
+  

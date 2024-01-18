@@ -1,0 +1,61 @@
+<!-- welcome.component.html -->
+<!-- welcome.component.html -->
+<nav class="navbar navbar-light bg-light" style="background-color: #cdcdcd !important;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="../../assets/images/panda-svgrepo-com (1).svg" alt="" width="30" height="24"
+                class="d-inline-block align-text-top">
+            HACKATHON
+        </a>
+    </div>
+</nav>
+<div>
+
+    <body style="height: 400px;">
+
+
+        <div class="pt-5 text-center " style="padding-bottom: 100px;">
+            <div  id="elementToHide">
+            <h1 class="pb-5">Welcome to our website!</h1>
+
+            <label for="languageSelect">Select your language:</label>
+            <select id="languageSelect" [(ngModel)]="selectedLanguage">
+                <option value="English" [value]=1>English</option>
+                <option value="Japanese" [value]=2>Japanese</option>
+                <!-- Add more language options as needed -->
+            </select>
+
+            <!-- <p *ngIf="selectedLanguage">Selected Language: {{ selectedLanguage }}</p> -->
+
+
+            <div class="pt-3 pb-3">
+                <button mat-raised-button (click)="nextone()" color="primary">NEXT</button>
+
+            </div>
+            </div>
+            <div id="email-form" class="d-none">
+                <!-- your-component.component.html -->
+                <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+                    <div>
+                        <label for="email" >Enter your Email:</label>
+                        <input type="email" id="email" width="230px" name="email" [(ngModel)]="user.email" #emailInput="ngModel" required
+                            email />
+                        <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+                            <div *ngIf="emailInput.errors && emailInput.errors.hasOwnProperty('required')">Email is
+                                required.</div>
+                            <div *ngIf="emailInput.errors && emailInput.errors.hasOwnProperty('email')">Invalid email
+                                format.</div>
+                        </div>
+    
+                    </div>
+                     <div class="pt-3 pb-3"><button mat-raised-button color="primary"  type="submit" [disabled]="myForm.invalid">Submit</button></div>
+                    
+                </form>
+    
+            </div>
+        </div>
+        
+
+    </body>
+
+    <footer style="background-color: gray; height: 100px;"></footer>
